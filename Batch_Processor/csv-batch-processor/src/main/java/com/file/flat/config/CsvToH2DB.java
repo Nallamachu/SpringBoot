@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.core.io.FileSystemResource;
 
 import com.file.flat.alert.JobCompletionNotificationListener;
 import com.file.flat.dto.Employee;
@@ -41,7 +42,10 @@ public class CsvToH2DB {
 	@Bean
 	public FlatFileItemReader<Employee> csvEmployeeReader() {
 		FlatFileItemReader<Employee> reader = new FlatFileItemReader<Employee>();
+		//If flat file located inside the project directory
 		reader.setResource(new ClassPathResource("employees.csv"));
+		//If flat file located in file system
+		//reader.setResource(new FileSystemResource("D:\\flat-file\\employees.csv"));
 		reader.setLinesToSkip(1);
 		reader.setLineMapper(new DefaultLineMapper<Employee>() {
 			{
