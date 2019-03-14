@@ -1,0 +1,28 @@
+server:
+  port: 8181
+
+spring:
+  application:
+    name: ToDoApplication
+  jackson:
+    serialization: 
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:~/application
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+    platform: h2
+    initialization-mode: always
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: create
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
